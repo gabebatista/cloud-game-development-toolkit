@@ -44,4 +44,5 @@ provisioned off of this AMI.
 *****************************/
 setup_jenkins_agent = true
 install_vs_tools = true
+install_git = true
 public_key = "<include public key here>"

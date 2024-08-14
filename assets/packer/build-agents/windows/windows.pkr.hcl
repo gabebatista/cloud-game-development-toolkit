@@ -52,6 +52,11 @@ variable "install_vs_tools" {
   default = true
 }
 
+variable "install_git" {
+  type = bool
+  default = true
+}
+
 variable "public_key" {
   type = string
 }

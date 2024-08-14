@@ -7,6 +7,7 @@ a default VPC in the target region, you'll need to provide a
 VPC and a subnet.
 *****************************/
 region = "us-west-2" # DEFAULT
+profile = "DEFAULT" # DEFAULT
 vpc_id = "PLACEHOLDER"
 subnet_id = "PLACEHOLDER"
 associate_public_ip_address = true # DEFAULT

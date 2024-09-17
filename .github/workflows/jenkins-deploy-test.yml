@@ -42,11 +42,22 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.6.3
+      # Inject remote state block
+      - name: Inject Remote State
+        run: |
+          cat > backend.tf << EOF
+          terraform {
+            backend "s3" {
+            }
+          }
       # Initialize environment
       - name: Terraform init
         id: init
         run: |
-          terraform init
+          terraform init \
+          -backend-config="bucket=$STATE_BUCKET_NAME"
+          -backend-config="key=${{ github.event.number }}"
+          -backend-config="region=${{ secrets.AWS_REGION }}
 
       # Check Format
       - name: Terraform Fmt
@@ -100,6 +111,15 @@ jobs:
       run:
         working-directory: modules/jenkins/examples/complete
     steps:
+      # Initialize environment
+      - name: Terraform init
+        id: init
+        run: |
+          terraform init \
+          -backend-config="bucket=$STATE_BUCKET_NAME"
+          -backend-config="key=${{ github.event.number }}"
+          -backend-config="region=${{ secrets.AWS_REGION }}
+
       # Run apply
       - name: Terraform apply
         run: |
@@ -108,8 +128,8 @@ jobs:
       ## Check load balancer health checks
       - name: ELB Health Check
         run: |
-          aws elbv2 describe-target-health --target-group-arn $(terraform output -raw alb_arn)
-
+          result = $(aws elbv2 describe-target-health --target-group-arn $(terraform output -raw alb_arn))
+          echo $result
 #  destroy:
 #    needs: [ deploy ]
 #    runs-on: ubuntu-latest

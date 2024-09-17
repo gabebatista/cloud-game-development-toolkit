@@ -5,7 +5,9 @@ env:
 
 # push on: PR when jenkin's files are changed
 on:
-  push: # change to pull_request before publish
+  pull_request: # change to pull_request before publish
+    branches:
+      - main
     paths:
       - 'modules/jenkins/**'
       - '.github/workflows/**'
@@ -42,15 +44,51 @@ jobs:
           terraform_version: 1.6.3
       # Initialize environment
       - name: Terraform init
+        id: init
         run: |
           terraform init
+
+      # Check Format
+      - name: Terraform Fmt
+        id: fmt
+        run: terraform fmt -check
+
+      # Validate Template
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
 
       # Save output as file and pass to apply step
       # Generate tf plan
       - name: Terraform plan
         run: |
-          terraform plan
+          terraform plan -no-color
 
+      - name: Update Pull Request
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.USER_TOKEN }}
+          script: |
+            const output = `#### Terraform Format and Styles 🖌\`${{ steps.fmt.outcome }}\`
+            #### Terraform Initialization 🤖\`${{ steps.init.outcome }}\`
+            #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+            <details><summary>Show Plan</summary>
+
+            \`\`\`\n
+            ${{ steps.plan.outputs.stdout }}
+            \`\`\`
+
+            </details>
+
+            *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
 
 #  deploy:
 #    needs: [ plan ]

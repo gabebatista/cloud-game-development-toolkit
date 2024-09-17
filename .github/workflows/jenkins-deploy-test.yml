@@ -112,7 +112,7 @@ jobs:
         working-directory: modules/jenkins/examples/complete
     steps:
       # Initialize environment
-      - name: Terraform init
+      - name: Terraform initialization
         id: init
         run: |
           terraform init -backend-config="bucket=${STATE_BUCKET_NAME}" -backend-config="key=${{ github.event.number }}" -backend-config="region=${{ secrets.AWS_REGION }}"

@@ -54,10 +54,7 @@ jobs:
       - name: Terraform init
         id: init
         run: |
-          terraform init \
-          -backend-config="bucket=$STATE_BUCKET_NAME"
-          -backend-config="key=${{ github.event.number }}"
-          -backend-config="region=${{ secrets.AWS_REGION }}
+          terraform init -backend-config="bucket=$STATE_BUCKET_NAME -backend-config="key=${{ github.event.number }}" -backend-config="region=${{ secrets.AWS_REGION }}
 
       # Check Format
       - name: Terraform Fmt

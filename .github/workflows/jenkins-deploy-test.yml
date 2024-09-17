@@ -116,8 +116,8 @@ jobs:
         id: init
         run: |
           terraform init \
-          -backend-config="bucket=${STATE_BUCKET_NAME}"
-          -backend-config="key=${{ github.event.number }}"
+          -backend-config="bucket=${STATE_BUCKET_NAME}" \
+          -backend-config="key=${{ github.event.number }}" \
           -backend-config="region=${{ secrets.AWS_REGION }}"
 
       # Run apply

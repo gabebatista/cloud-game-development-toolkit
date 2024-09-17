@@ -120,7 +120,7 @@ jobs:
           -backend-config="key=${{ github.event.number }}" \
           -backend-config="region=${{ secrets.AWS_REGION }}"
 
-      # Run apply
+      # Run applys
       - name: Terraform apply
         run: |
           terraform apply

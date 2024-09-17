@@ -62,3 +62,7 @@ module "jenkins" {
 
   depends_on = [aws_ecs_cluster.jenkins_cluster, aws_acm_certificate_validation.jenkins]
 }
+
+output "alb_arn" {
+  value = module.jenkins.alb_arn
+}

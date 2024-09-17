@@ -141,3 +141,7 @@ resource "aws_lb_listener" "jenkins_alb_https_listener" {
 
   tags = local.tags
 }
+
+output "alb_arn" {
+  value = aws_lb.jenkins_alb.arn
+}

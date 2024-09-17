@@ -2,6 +2,7 @@ name: Jenkins Deployment Test
 
 env:
   TF_VAR_fully_qualified_domain_name: ${{ secrets.CI_FULLY_QUALIFIED_DOMAIN_NAME }}
+  STATE_BUCKET_NAME: "gabeaws-tf-state"
 
 # push on: PR when jenkin's files are changed
 on:

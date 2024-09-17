@@ -61,6 +61,7 @@ jobs:
       # Save output as file and pass to apply step
       # Generate tf plan
       - name: Terraform plan
+        id: plan
         run: |
           terraform plan -no-color
 
@@ -69,7 +70,7 @@ jobs:
         with:
           github-token: ${{ secrets.USER_TOKEN }}
           script: |
-            const output = `#### Terraform Format and Styles 🖌\`${{ steps.fmt.outcome }}\`
+            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
             #### Terraform Initialization 🤖\`${{ steps.init.outcome }}\`
             #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
             #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`

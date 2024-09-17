@@ -93,7 +93,7 @@ jobs:
 
   deploy:
     needs: [ plan ]
-    environment: jenkins-test-environment
+    environment: jenkins-test-deploy
     runs-on: ubuntu-latest
     defaults:
       run:

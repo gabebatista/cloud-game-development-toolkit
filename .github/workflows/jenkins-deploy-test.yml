@@ -109,8 +109,33 @@ jobs:
       run:
         working-directory: modules/jenkins/examples/complete
     steps:
+      # Checkout Repository
+      - name: Checkout Git Repository
+        uses: actions/checkout@v3.0.0
+        with:
+          ref: main
+      # Retrieve necessary AWS permissions
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1.7.0
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOYMENT_ROLE_ARN }}
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ secrets.AWS_REGION }}
+      # Install Terraform
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.6.3
+      # Inject remote state block
+      - name: Inject Remote State
+        run: |
+          cat > backend.tf << EOF
+          terraform {
+            backend "s3" {
+            }
+          }
       # Initialize environment
-      - name: Terraform initialization
+      - name: Terraform init
         id: init
         run: |
           terraform init -backend-config="bucket=${STATE_BUCKET_NAME}" -backend-config="key=${{ github.event.number }}" -backend-config="region=${{ secrets.AWS_REGION }}"

@@ -143,7 +143,7 @@ jobs:
       # Run applys
       - name: Terraform apply
         run: |
-          terraform apply
+          terraform apply -auto-approve
 
       ## Check load balancer health checks
       - name: ELB Health Check

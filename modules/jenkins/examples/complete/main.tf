@@ -64,5 +64,5 @@ module "jenkins" {
 }
 
 output "alb_arn" {
-  value = module.jenkins.alb_arn
+  value = module.jenkins.target_group_arn
 }

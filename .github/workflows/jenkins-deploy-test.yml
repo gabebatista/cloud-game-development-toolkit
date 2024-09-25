@@ -178,7 +178,7 @@ jobs:
             backend "s3" {
             }
           }
-      # Initialize environment
+      # Initialize env
       - name: Terraform init
         id: init
         run: |

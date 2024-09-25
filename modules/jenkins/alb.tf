@@ -141,3 +141,7 @@ resource "aws_lb_listener" "jenkins_alb_https_listener" {
 
   tags = local.tags
 }
+
+output "target_group_arn" {
+  value = aws_lb_target_group.jenkins_alb_target_group.arn
+}

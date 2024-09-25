@@ -2,10 +2,11 @@ name: Jenkins Deployment Test
 
 env:
   TF_VAR_fully_qualified_domain_name: ${{ secrets.CI_FULLY_QUALIFIED_DOMAIN_NAME }}
+  STATE_BUCKET_NAME: "gabeaws-tf-state"
 
 # push on: PR when jenkin's files are changed
 on:
-  push: # change to pull_request before publish
+  pull_request: # change to pull_request before publish
     paths:
       - 'modules/jenkins/**'
       - '.github/workflows/**'
@@ -27,8 +28,8 @@ jobs:
       - name: Checkout Git Repository
         uses: actions/checkout@v3.0.0
         with:
-          ref: main
-      # Retrive necessary AWS permissions
+          ref: ${{ github.ref }}
+      # Retrieve necessary AWS permissions
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1.7.0
         with:
@@ -40,41 +41,135 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.6.3
+      # Inject remote state block
+      - name: Inject Remote State
+        run: |
+          cat > backend.tf << EOF
+          terraform {
+            backend "s3" {
+            }
+          }
       # Initialize environment
       - name: Terraform init
+        id: init
         run: |
-          terraform init
+          terraform init -backend-config="bucket=${STATE_BUCKET_NAME}" -backend-config="key=${{ github.event.number }}" -backend-config="region=${{ secrets.AWS_REGION }}"
 
-      # Save output as file and pass to apply step
       # Generate tf plan
       - name: Terraform plan
+        id: plan
         run: |
-          terraform plan
+          terraform plan -no-color
 
+      - name: Update Pull Request
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.USER_TOKEN }}
+          script: |
+            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            #### Terraform Initialization 🤖\`${{ steps.init.outcome }}\`
+            #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+            <details><summary>Show Plan</summary>
 
-#  deploy:
-#    needs: [ plan ]
-#    environment: jenkins-test-environment
-#    runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        working-directory: modules/jenkins/examples/complete
-#    steps:
-#      # Write output file as comment in triggering PR
-#      # - name: Manual Approval in Triggering PR
-#
-#      # Run apply
-#      - name: Terraform apply
-#        run: |
-#          terraform apply
-#
-#  destroy:
-#    needs: [ deploy ]
-#    runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        working-directory: modules/jenkins/examples/complete
-#    steps:
-#      - name: Terraform Destroy
-#        run: |
-#          terraform destroy
+            \`\`\`\n
+            ${{ steps.plan.outputs.stdout }}
+            \`\`\`
+
+            </details>
+
+            *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+
+  deploy:
+    needs: [ plan ]
+    environment: jenkins-test-deploy
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: modules/jenkins/examples/complete
+    steps:
+      # Checkout Repository
+      - name: Checkout Git Repository
+        uses: actions/checkout@v3.0.0
+        with:
+          ref: ${{ github.ref }}
+      # Retrieve necessary AWS permissions
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1.7.0
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOYMENT_ROLE_ARN }}
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ secrets.AWS_REGION }}
+      # Install Terraform
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.6.3
+      # Inject remote state block
+      - name: Inject Remote State
+        run: |
+          cat > backend.tf << EOF
+          terraform {
+            backend "s3" {
+            }
+          }
+      # Initialize environment
+      - name: Terraform init
+        id: init
+        run: |
+          terraform init -backend-config="bucket=${STATE_BUCKET_NAME}" -backend-config="key=${{ github.sha }}" -backend-config="region=${{ secrets.AWS_REGION }}"
+
+      # Run applys
+      - name: Terraform apply
+        run: |
+          terraform apply -auto-approve
+
+  destroy:
+    needs: [ deploy ]
+    runs-on: ubuntu-latest
+    environment: jenkins-test-deploy
+    defaults:
+      run:
+        working-directory: modules/jenkins/examples/complete
+    steps:
+      # Checkout Repository
+      - name: Checkout Git Repository
+        uses: actions/checkout@v3.0.0
+        with:
+          ref: ${{ github.ref }}
+      # Retrieve necessary AWS permissions
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1.7.0
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOYMENT_ROLE_ARN }}
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ secrets.AWS_REGION }}
+      # Install Terraform
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.6.3
+      # Inject remote state block
+      - name: Inject Remote State
+        run: |
+          cat > backend.tf << EOF
+          terraform {
+            backend "s3" {
+            }
+          }
+      # Initialize env
+      - name: Terraform init
+        id: init
+        run: |
+          terraform init -backend-config="bucket=${STATE_BUCKET_NAME}" -backend-config="key=${{ github.sha }}" -backend-config="region=${{ secrets.AWS_REGION }}"
+
+      - name: Terraform Destroy
+        run: |
+          terraform destroy -auto-approve

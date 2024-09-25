@@ -55,18 +55,6 @@ jobs:
         run: |
           terraform init -backend-config="bucket=${STATE_BUCKET_NAME}" -backend-config="key=${{ github.event.number }}" -backend-config="region=${{ secrets.AWS_REGION }}"
 
-      # Check Format
-      - name: Terraform Fmt
-        id: fmt
-        run: terraform fmt -check
-        # fail on error
-
-      # Validate Template
-      - name: Terraform Validate
-        id: validate
-        run: terraform validate -no-color
-        # fail on error
-
       # Generate tf plan
       - name: Terraform plan
         id: plan

@@ -7,8 +7,6 @@ env:
 # push on: PR when jenkin's files are changed
 on:
   pull_request: # change to pull_request before publish
-    branches:
-      - main
     paths:
       - 'modules/jenkins/**'
       - '.github/workflows/**'
@@ -30,7 +28,7 @@ jobs:
       - name: Checkout Git Repository
         uses: actions/checkout@v3.0.0
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ github.ref }}
       # Retrieve necessary AWS permissions
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1.7.0
@@ -113,7 +111,7 @@ jobs:
       - name: Checkout Git Repository
         uses: actions/checkout@v3.0.0
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ github.ref }}
       # Retrieve necessary AWS permissions
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1.7.0
@@ -157,7 +155,7 @@ jobs:
       - name: Checkout Git Repository
         uses: actions/checkout@v3.0.0
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ github.ref }}
       # Retrieve necessary AWS permissions
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1.7.0

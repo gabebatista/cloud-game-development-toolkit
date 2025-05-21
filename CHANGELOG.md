@@ -38,6 +38,7 @@
 - regenerate CHANGELOG.md for 2025-05-16
 - regenerate CHANGELOG.md for 2025-05-16
 - regenerate CHANGELOG.md for 2025-05-16
+- regenerate CHANGELOG.md for 2025-05-16
 - **deps:** bump python from 3.12 to 3.12.6 in /docs ([#243](https://github.com/aws-games/cloud-game-development-toolkit/issues/243))
 - **deps:** bump mkdocs-material from 9.5.33 to 9.5.34 in /docs ([#236](https://github.com/aws-games/cloud-game-development-toolkit/issues/236))
 - **deps:** bump actions/upload-artifact from 4.3.6 to 4.4.0 ([#235](https://github.com/aws-games/cloud-game-development-toolkit/issues/235))
@@ -67,6 +68,7 @@
 - Windows Build AMI README ([#187](https://github.com/aws-games/cloud-game-development-toolkit/issues/187))
 
 ### Pull Requests
+- Merge pull request [#21](https://github.com/aws-games/cloud-game-development-toolkit/issues/21) from gabebatista/changelog-15075117625
 - Merge pull request [#20](https://github.com/aws-games/cloud-game-development-toolkit/issues/20) from gabebatista/changelog-15073108872
 - Merge pull request [#19](https://github.com/aws-games/cloud-game-development-toolkit/issues/19) from gabebatista/changelog-15072935145
 - Merge pull request [#18](https://github.com/aws-games/cloud-game-development-toolkit/issues/18) from gabebatista/changelog-15072316303

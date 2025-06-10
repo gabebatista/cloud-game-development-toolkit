@@ -2,6 +2,15 @@
 ## [Unreleased]
 
 
+<a name="v.."></a>
+## [v..] - 2025-06-10
+### Chore
+- regenerate CHANGELOG.md for 2025-05-22
+
+### Features
+- removes need for inputs on auto-release
+
+
 <a name="latest"></a>
 ## [latest] - 2025-05-16
 
@@ -153,7 +162,8 @@
 - **packer:** switch AMI from Rocky Linux to Amazon Linux 2023 and up… ([#141](https://github.com/aws-games/cloud-game-development-toolkit/issues/141))
 
 
-[Unreleased]: https://github.com/aws-games/cloud-game-development-toolkit/compare/latest...HEAD
+[Unreleased]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v.....HEAD
+[v..]: https://github.com/aws-games/cloud-game-development-toolkit/compare/latest...v..
 [latest]: https://github.com/aws-games/cloud-game-development-toolkit/compare/1.0.0...latest
 [1.0.0]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.0.0-alpha...1.0.0
 [v1.0.0-alpha]: https://github.com/aws-games/cloud-game-development-toolkit/compare/staging...v1.0.0-alpha

@@ -7,6 +7,7 @@
 ### Chore
 - regenerate CHANGELOG.md for 2025-06-10
 - regenerate CHANGELOG.md for 2025-06-10
+- regenerate CHANGELOG.md for 2025-06-10
 
 ### Features
 - removes need for inputs on auto-release

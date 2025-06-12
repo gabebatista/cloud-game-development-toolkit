@@ -2,8 +2,32 @@
 ## [Unreleased]
 
 
+<a name="v1.1.13"></a>
+## [v1.1.13] - 2025-06-12
+
 <a name="latest"></a>
-## [latest] - 2025-05-16
+## [latest] - 2025-06-12
+
+<a name="v1.1.9"></a>
+## [v1.1.9] - 2025-06-11
+
+<a name="v1.1.8"></a>
+## [v1.1.8] - 2025-06-11
+
+<a name="v1.1.5"></a>
+## [v1.1.5] - 2025-06-11
+
+<a name="v1.1.12"></a>
+## [v1.1.12] - 2025-06-11
+
+<a name="v1.1.11"></a>
+## [v1.1.11] - 2025-06-11
+
+<a name="v1.1.10"></a>
+## [v1.1.10] - 2025-06-11
+### Features
+- removes need for inputs on auto-release
+
 
 <a name="1.0.0"></a>
 ## [1.0.0] - 2025-05-16
@@ -29,6 +53,7 @@
 - **p4_configure:** resolve script execution errors and repair broken … ([#232](https://github.com/aws-games/cloud-game-development-toolkit/issues/232))
 
 ### Chore
+- regenerate CHANGELOG.md for 2025-05-16
 - regenerate CHANGELOG.md for 2025-05-16
 - regenerate CHANGELOG.md for 2025-05-16
 - regenerate CHANGELOG.md for 2025-05-16
@@ -67,6 +92,7 @@
 - Windows Build AMI README ([#187](https://github.com/aws-games/cloud-game-development-toolkit/issues/187))
 
 ### Pull Requests
+- Merge pull request [#21](https://github.com/aws-games/cloud-game-development-toolkit/issues/21) from gabebatista/changelog-15075117625
 - Merge pull request [#20](https://github.com/aws-games/cloud-game-development-toolkit/issues/20) from gabebatista/changelog-15073108872
 - Merge pull request [#19](https://github.com/aws-games/cloud-game-development-toolkit/issues/19) from gabebatista/changelog-15072935145
 - Merge pull request [#18](https://github.com/aws-games/cloud-game-development-toolkit/issues/18) from gabebatista/changelog-15072316303
@@ -151,7 +177,14 @@
 - **packer:** switch AMI from Rocky Linux to Amazon Linux 2023 and up… ([#141](https://github.com/aws-games/cloud-game-development-toolkit/issues/141))
 
 
-[Unreleased]: https://github.com/aws-games/cloud-game-development-toolkit/compare/latest...HEAD
-[latest]: https://github.com/aws-games/cloud-game-development-toolkit/compare/1.0.0...latest
+[Unreleased]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.13...HEAD
+[v1.1.13]: https://github.com/aws-games/cloud-game-development-toolkit/compare/latest...v1.1.13
+[latest]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.9...latest
+[v1.1.9]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.8...v1.1.9
+[v1.1.8]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.5...v1.1.8
+[v1.1.5]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.12...v1.1.5
+[v1.1.12]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.11...v1.1.12
+[v1.1.11]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.10...v1.1.11
+[v1.1.10]: https://github.com/aws-games/cloud-game-development-toolkit/compare/1.0.0...v1.1.10
 [1.0.0]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.0.0-alpha...1.0.0
 [v1.0.0-alpha]: https://github.com/aws-games/cloud-game-development-toolkit/compare/staging...v1.0.0-alpha

@@ -4,6 +4,9 @@
 
 <a name="v1.1.13"></a>
 ## [v1.1.13] - 2025-06-12
+### Chore
+- regenerate CHANGELOG.md for 2025-06-12
+
 
 <a name="latest"></a>
 ## [latest] - 2025-06-12

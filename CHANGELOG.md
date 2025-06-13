@@ -5,10 +5,12 @@
 <a name="v1.1.13"></a>
 ## [v1.1.13] - 2025-06-13
 ### Chore
+- regenerate CHANGELOG.md for 2025-06-13
 - regenerate CHANGELOG.md for 2025-06-12
 - regenerate CHANGELOG.md for 2025-06-12
 
 ### Features
+- incremented number
 - incremented number
 - incremented number
 - incremented number

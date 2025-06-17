@@ -1,12 +1,18 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="latest"></a>
+## [latest] - 2025-06-13
+
+<a name="v1.1.13"></a>
+## [v1.1.13] - 2025-06-13
+### Chore
+- regenerate CHANGELOG.md for 2025-06-13
+
 ### Features
 - incremented number
 
-
-<a name="latest"></a>
-## [latest] - 2025-06-12
 
 <a name="v1.1.9"></a>
 ## [v1.1.9] - 2025-06-11
@@ -178,7 +184,8 @@
 
 
 [Unreleased]: https://github.com/aws-games/cloud-game-development-toolkit/compare/latest...HEAD
-[latest]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.9...latest
+[latest]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.13...latest
+[v1.1.13]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.9...v1.1.13
 [v1.1.9]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.8...v1.1.9
 [v1.1.8]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.5...v1.1.8
 [v1.1.5]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.12...v1.1.5

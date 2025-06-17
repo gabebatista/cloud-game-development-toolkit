@@ -41,7 +41,7 @@ jobs:
           VERSION_MAJOR=${VERSION_MAJOR#v} # Remove leading 'v'
           NEW_VERSION=v$VERSION_MAJOR.$VERSION_MINOR.$(($VERSION_PATCH+1))
           git fetch --tags origin
-          docker run --rm -v $(pwd):/workdir quay.io/git-chglog/git-chglog -o CHANGELOG.md
+          docker run --rm -v $(pwd):/workdir quay.io/git-chglog/git-chglog --next-tag $NEW_VERSION -o CHANGELOG.md
           export TODAY=$( date -u '+%Y-%m-%d' )
           export MESSAGE="chore: regenerate $FILE_TO_COMMIT for $TODAY"
           export CONTENT=$( base64 -i $FILE_TO_COMMIT )

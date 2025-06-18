@@ -2,8 +2,20 @@
 ## [Unreleased]
 
 
+<a name="v1.1.15"></a>
+## [v1.1.15] - 2025-06-17
+### Features
+- did it fix it?
+
+
 <a name="latest"></a>
-## [latest] - 2025-06-13
+## [latest] - 2025-06-17
+
+<a name="v1.1.14"></a>
+## [v1.1.14] - 2025-06-17
+### Chore
+- regenerate CHANGELOG.md for 2025-06-17
+
 
 <a name="v1.1.13"></a>
 ## [v1.1.13] - 2025-06-13
@@ -183,8 +195,10 @@
 - **packer:** switch AMI from Rocky Linux to Amazon Linux 2023 and up… ([#141](https://github.com/aws-games/cloud-game-development-toolkit/issues/141))
 
 
-[Unreleased]: https://github.com/aws-games/cloud-game-development-toolkit/compare/latest...HEAD
-[latest]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.13...latest
+[Unreleased]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.15...HEAD
+[v1.1.15]: https://github.com/aws-games/cloud-game-development-toolkit/compare/latest...v1.1.15
+[latest]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.14...latest
+[v1.1.14]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.13...v1.1.14
 [v1.1.13]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.9...v1.1.13
 [v1.1.9]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.8...v1.1.9
 [v1.1.8]: https://github.com/aws-games/cloud-game-development-toolkit/compare/v1.1.5...v1.1.8
